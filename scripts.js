@@ -94,3 +94,54 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.deal-card, .feature-card, .contact-item').forEach(el => {
     observer.observe(el);
 });
+
+(function () {
+  const style = document.createElement('style');
+  style.textContent = `
+    .blurred-body > *:not(.dev-banner) {
+      filter: blur(10px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .dev-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .dev-banner h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .dev-banner p {
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
+  `;
+  document.head.appendChild(style);
+
+  document.body.classList.add('blurred-body');
+
+  const banner = document.createElement('div');
+  banner.className = 'dev-banner';
+  banner.innerHTML = `
+    <h1>🚧 Under Construction</h1>
+    <p>We’re working hard to improve this website.<br>Please check back soon.</p>
+  `;
+
+  document.body.appendChild(banner);
+})();
