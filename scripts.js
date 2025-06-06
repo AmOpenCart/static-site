@@ -69,33 +69,9 @@ function init() {
     
     // Set initial ARIA states
     mobileMenuBtn.setAttribute('aria-expanded', 'false');
-}
 
-// Run initialization when DOM is loaded
-document.addEventListener('DOMContentLoaded', init);
-
-// Add fade-in animation to elements as they come into view
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// Observe elements that should fade in
-document.querySelectorAll('.deal-card, .feature-card, .contact-item').forEach(el => {
-    observer.observe(el);
-});
-
-(function () {
+    //
+    (function () {
   const style = document.createElement('style');
   style.textContent = `
     .blurred-body > *:not(.dev-banner) {
@@ -145,3 +121,28 @@ document.querySelectorAll('.deal-card, .feature-card, .contact-item').forEach(el
 
   document.body.appendChild(banner);
 })();
+}
+
+// Run initialization when DOM is loaded
+document.addEventListener('DOMContentLoaded', init);
+
+// Add fade-in animation to elements as they come into view
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe elements that should fade in
+document.querySelectorAll('.deal-card, .feature-card, .contact-item').forEach(el => {
+    observer.observe(el);
+});
